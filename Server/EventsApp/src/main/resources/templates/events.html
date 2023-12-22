@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wydarzenia</title>
+</head>
+<body>
+
+<h2>Lista Wydarzeń</h2>
+
+<table>
+    <thead>
+    <tr>
+        <th>Nazwa</th>
+        <th>Data</th>
+        <th>Akcje</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Iteracja przez wydarzenia -->
+    <tr th:each="event : ${events}">
+        <td th:text="${event.name}"></td>
+        <td th:text="${event.date}"></td>
+        <td>
+            <!-- Przycisk do zapisu na wydarzenie -->
+            <form th:action="@{/events/{eventId}/register(eventId=${event.id})}" method="post">
+                <button type="submit">Zapisz się</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
