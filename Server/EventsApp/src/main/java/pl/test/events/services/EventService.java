@@ -85,7 +85,7 @@ public class EventService {
 
             if (currentDate.plusDays(7).isAfter(eventDate) || currentDate.plusDays(7).isEqual(eventDate)) {
                 String subject = "Nadchodzące wydarzenie: " + data.name();
-                String message = "Już niedługo odbędzie się wydarzenie " + data.name() + " ,na które się zapisałeś.\n\n" +
+                String message = "Już niedługo odbędzie się wydarzenie " + data.name() + ", na które się zapisałeś.\n\n" +
                         "Termin: " + data.dateOfEvent() + "\n" +
                         "Godzina: " + data.timeOfEvent() + "\n" +
                         "Miejsce: " + data.placeOfEvent();

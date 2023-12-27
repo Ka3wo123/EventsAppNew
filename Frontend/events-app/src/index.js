@@ -3,11 +3,23 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter, Router, Route, Routes } from 'react-router-dom';
+import MainPage from './components/MainPage';
+import NoPage from './components/NoPage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<App/>}>
+          <Route path='/events' element={<MainPage/>}/>
+          <Route path='*' element={<NoPage/>}/>
+        </Route>
+
+      </Routes>
+    </BrowserRouter>
+
   </React.StrictMode>
 );
 

@@ -1,8 +1,8 @@
 spring:
   datasource:
-    jdbc-url: 'jdbc:postgresql://195.150.230.208:5432/2023_nowak_kajetan'
-    username: '2023_nowak_kajetan'
-    password: '35686'
+    jdbc-url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
   jpa:
     show-sql: true
     properties:
@@ -11,14 +11,13 @@ spring:
         format-sql: true
 
   mail:
-    host: 'smtp.gmail.com'
-    port: 587
-    username: 'events.noreply.toik@gmail.com'
-    password: 'gtlqolzqxwaljvdx'
+    host: ${EMAIL_HOST}
+    port: ${EMAIL_PORT}
+    username: ${EMAIL_USERNAME}
+    password: ${EMAIL_PASSWORD}
     properties:
       mail:
         smtp:
           auth: true
           starttls:
             enable: true
-
