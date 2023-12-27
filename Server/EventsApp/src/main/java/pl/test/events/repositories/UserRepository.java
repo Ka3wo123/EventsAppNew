@@ -18,7 +18,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Boolean existsUserByEmail(String email);
 
     @Modifying
-    @Query(value = "INSERT INTO project.user_event (user_email, event_id) VALUES (?1, ?2)", nativeQuery = true)
+    @Query(value = "INSERT INTO project.user_event (user_email, event_id, is_sent) VALUES (?1, ?2, false)", nativeQuery = true)
     void addUserToEvent(String userEmail, Long eventId);
 
     @Modifying

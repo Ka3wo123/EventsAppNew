@@ -9,3 +9,16 @@ spring:
       hibernate:
         dialect: 'org.hibernate.dialect.PostgreSQLDialect'
         format-sql: true
+
+  mail:
+    host: 'smtp.gmail.com'
+    port: 587
+    username: 'events.noreply.toik@gmail.com'
+    password: 'gtlqolzqxwaljvdx'
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
