@@ -23,10 +23,10 @@ spring:
     password: '${DB_PASSWORD}'
 
   mail:
-    host: '${MAIL_HOST}'
-    port: '${MAIL_PORT}'
-    username: '${MAIL_USERNAME}'
-    password: '${MAIL_PASSWORD}'
+    host: '${EMAIL_HOST}'
+    port: '${EMAIL_PORT}'
+    username: '${EMAIL_USERNAME}'
+    password: '${EMAIL_PASSWORD}'
     properties:
       mail:
         smtp:
