@@ -71,6 +71,7 @@ public class EventService {
     @Transactional
     @Scheduled(fixedRate = 5000)
     public void sendEmails() {
+        System.out.println("=======: Sending notifications :========");
         List<EmailNotification> emailsNotification = getEmailsNotification();
 
         LocalDate currentDate = LocalDate.now();
@@ -93,6 +94,7 @@ public class EventService {
                 eventRepository.updateSent(data.email(), data.id());
             }
         }
+        System.out.println("=======: Finished :========");
     }
 
     private List<EmailNotification> getEmailsNotification() {
