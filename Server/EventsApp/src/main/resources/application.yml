@@ -1,35 +1,19 @@
-#spring:
-#  datasource:
-#    jdbc-url: 'jdbc:postgresql://195.150.230.208:5432/2023_nowak_kajetan'
-#    username: '2023_nowak_kajetan'
-#    password: '35686'
-#
-#  mail:
-#    host: 'smtp.gmail.com'
-#    port: 587
-#    username: 'events.noreply.toik@gmail.com'
-#    password: 'gtlqolzqxwaljvdx'
-#    properties:
-#      mail:
-#        smtp:
-#          auth: true
-#          starttls:
-#            enable: true
-#
 spring:
   datasource:
-    jdbc-url: '${DB_URL}'
-    username: '${DB_USERNAME}'
-    password: '${DB_PASSWORD}'
+    jdbc-url: 'jdbc:postgresql://195.150.230.208:5432/2023_nowak_kajetan'
+    username: '2023_nowak_kajetan'
+    password: '35686'
 
   mail:
-    host: '${EMAIL_HOST}'
-    port: '${EMAIL_PORT}'
-    username: '${EMAIL_USERNAME}'
-    password: '${EMAIL_PASSWORD}'
+    host: 'smtp.gmail.com'
+    port: 587
+    username: 'events.noreply.toik@gmail.com'
+    password: 'gtlqolzqxwaljvdx'
     properties:
       mail:
         smtp:
           auth: true
           starttls:
             enable: true
+
+
