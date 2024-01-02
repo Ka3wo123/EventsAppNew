@@ -25,8 +25,9 @@ public class EventController {
     }
 
     @GetMapping("/events")
-    public List<EventDto> getEvents(@RequestParam(value = "user-email", required = false) String email) {
-        return eventService.getAllEvents(email);
+    public List<EventDto> getEvents(@RequestParam(value = "user-email", required = false) String email,
+                                    @RequestParam(value = "event-location", required = false) String location) {
+        return eventService.getAllEvents(email, location);
     }
 
     @PostMapping("/event/add")

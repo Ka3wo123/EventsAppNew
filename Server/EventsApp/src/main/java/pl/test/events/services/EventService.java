@@ -39,14 +39,17 @@ public class EventService {
     /**
      *
      * @param email User's email.
-     * @return All events.
+     * @return All events or events for user's email or event location.
      */
-    public List<EventDto> getAllEvents(String email) {
-        if (email != null) {
+    public List<EventDto> getAllEvents(String email, String location) {
+        if (email != null && location == null) {
             return eventRepository.findByUsersEmail(email).stream().map(eventDtoMapper).toList();
+        } else if(email == null && location != null) {
+            return eventRepository.findByPlace(location).stream().map(eventDtoMapper).toList();
         }
         return eventRepository.findAll().stream().map(eventDtoMapper).toList();
     }
+
 
     /**
      * User can add new event.

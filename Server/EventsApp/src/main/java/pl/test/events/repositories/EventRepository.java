@@ -24,6 +24,8 @@ public interface EventRepository extends JpaRepository<Event, Long> {
 
     void deleteEventByName(String name);
 
+    List<Event> findByPlace(String location);
+
     /**
      * Custom query which is necessary for notification sending. Operates on association table.
      * @return Event's and assigned user's data.
