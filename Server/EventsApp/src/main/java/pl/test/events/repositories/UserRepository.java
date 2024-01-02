@@ -17,10 +17,20 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByEmail(String email);
     Boolean existsUserByEmail(String email);
 
+    /**
+     * Custom query which assigns user to event. Operates on association table.
+     * @param userEmail User's email who will be assigned to event.
+     * @param eventId Event identifier.
+     */
     @Modifying
     @Query(value = "INSERT INTO project.user_event (user_email, event_id, is_sent) VALUES (?1, ?2, false)", nativeQuery = true)
     void addUserToEvent(String userEmail, Long eventId);
 
+    /**
+     * Custom query which removes user from specific event. Operates on association table.
+     * @param email User's email who will be removed from event.
+     * @param id Event identifier.
+     */
     @Modifying
     @Query(value = "DELETE FROM project.user_event WHERE user_email = ?1 AND event_id = ?2", nativeQuery = true)
     void deleteEventForUser(String email, Long id);

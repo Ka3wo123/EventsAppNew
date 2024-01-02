@@ -22,6 +22,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
 @Service
 public class EventService {
     private final EventRepository eventRepository;
@@ -35,6 +36,11 @@ public class EventService {
         this.emailSender = emailSender;
     }
 
+    /**
+     *
+     * @param email User's email.
+     * @return All events.
+     */
     public List<EventDto> getAllEvents(String email) {
         if (email != null) {
             return eventRepository.findByUsersEmail(email).stream().map(eventDtoMapper).toList();
@@ -42,6 +48,11 @@ public class EventService {
         return eventRepository.findAll().stream().map(eventDtoMapper).toList();
     }
 
+    /**
+     * User can add new event.
+     * @param eventDto Event entity as DTO.
+     * @return Information regard to creation of event.
+     */
     public ResponseEntity<String> createEvent(EventDto eventDto) {
         if (eventRepository.existsEventByName(eventDto.name())) {
             return new ResponseEntity<>("Event " + eventDto.name() + " already exists", HttpStatus.CONFLICT);
@@ -59,6 +70,11 @@ public class EventService {
         return new ResponseEntity<>("Event " + eventDto.name() + " created!", HttpStatus.CREATED);
     }
 
+    /**
+     *
+     * @param name Event name which will be deleted from set of events.
+     * @return Information regard to deletion of event.
+     */
     @Transactional
     public ResponseEntity<String> deleteEvent(String name) {
         if (eventRepository.existsEventByName(name)) {
@@ -68,6 +84,11 @@ public class EventService {
         return new ResponseEntity<>("No such event", HttpStatus.CONFLICT);
     }
 
+    /**
+     * Method that is invoked in specific time when server is running.
+     * It sends reminder notifications on users' emails who have been assigned to
+     * particular events. Reminders are sent one week before event's date.
+     */
     @Transactional
     @Scheduled(fixedRate = 5000)
     public void sendEmails() {

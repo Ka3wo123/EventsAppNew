@@ -1,0 +1,7 @@
+pl.test.events
+pl.test.events.controllers
+pl.test.events.datasource
+pl.test.events.models
+pl.test.events.models.dto
+pl.test.events.repositories
+pl.test.events.services

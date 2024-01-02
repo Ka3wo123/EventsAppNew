@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import pl.test.events.models.Event;
 import pl.test.events.models.User;
-import pl.test.events.models.dto.EventDtoMapper;
 import pl.test.events.models.dto.UserDto;
 import pl.test.events.models.dto.UserDtoMapper;
 import pl.test.events.repositories.EventRepository;
@@ -35,10 +34,19 @@ public class UserService {
         this.userDtoMapper = userDtoMapper;
     }
 
+    /**
+     *
+     * @return Users in system.
+     */
     public List<UserDto> getAllUsers() {
         return userRepository.findAll().stream().map(userDtoMapper).toList();
     }
 
+    /**
+     *
+     * @param userDto User entity as DTO.
+     * @return Information regard to creation of new user.
+     */
     public ResponseEntity<String> createUser(UserDto userDto) {
         if (userRepository.existsUserByEmail(userDto.email())) {
             return new ResponseEntity<>("Email already exists. New user not created", HttpStatus.CONFLICT);
@@ -56,6 +64,12 @@ public class UserService {
         return new ResponseEntity<>("User " + userDto.email() + " created!", HttpStatus.CREATED);
     }
 
+    /**
+     * User is allowed to assign to chosen event only once.
+     * @param userEmail User email who wants to assign to event.
+     * @param name Name of picked event.
+     * @return Information regard to assigning user to event.
+     */
     @Transactional
     public ResponseEntity<String> addUserToEvent(String userEmail, String name) {
         Optional<User> optionalUser = userRepository.findByEmail(userEmail);
@@ -74,6 +88,12 @@ public class UserService {
         return new ResponseEntity<>("Event " + name + " not found", HttpStatus.CONFLICT);
     }
 
+    /**
+     * User can remove themselves from specific events.
+     * @param email Usere email who wants to remove themselves from event.
+     * @param name Name of event.
+     * @return Information regard to removing user from event.
+     */
     @Transactional
     public ResponseEntity<String> deleteEventForUser(String email, String name) {
         Optional<User> optionalUser = userRepository.findByEmail(email);
